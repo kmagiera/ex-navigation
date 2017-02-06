@@ -253,7 +253,6 @@ class ExNavigationDrawer extends PureComponent<any, Props, State> {
     const selectedChild = navState.routes[navState.index];
 
     return [
-      ..._.uniq(_.without([...currentRenderedItemKeys, ...currentDrawerItems], selectedChild.key)),
       selectedChild.key,
     ];
   }
