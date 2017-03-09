@@ -252,7 +252,14 @@ class ExNavigationDrawer extends PureComponent<any, Props, State> {
     const currentDrawerItems = navState.routes.map(c => c.key);
     const selectedChild = navState.routes[navState.index];
 
+    const toKeep = currentRenderedItemKeys.map(key => {
+      return this.state.drawerItems.find(i => i.id === key);
+    }).filter(item => {
+      return item && item.keep;
+    }).map(item => item.id)
+
     return [
+      ..._.uniq(_.without(toKeep, selectedChild.key)),
       selectedChild.key,
     ];
   }
